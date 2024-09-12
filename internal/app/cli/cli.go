@@ -4,23 +4,22 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/bastean/codexgo/v4/internal/pkg/service/errors"
-	"github.com/bastean/codexgo/v4/internal/pkg/service/logger/log"
-	"github.com/joho/godotenv"
+	"github.com/bastean/godo/internal/pkg/service/errors"
+	"github.com/bastean/godo/internal/pkg/service/logger/log"
 )
 
 const (
-	cli = "codexgo"
+	cli = "godo"
 )
 
 var (
-	env string
+	task string
 )
 
 func usage() {
 	log.Logo()
 
-	fmt.Print("Example CRUD project applying Hexagonal Architecture, DDD, EDA, CQRS, BDD, CI, and more... in Go.\n\n")
+	fmt.Print("Predefined task runner.\n\n")
 
 	fmt.Printf("Usage: %s [flags]\n\n", cli)
 
@@ -28,17 +27,16 @@ func usage() {
 }
 
 func Up() error {
-	flag.StringVar(&env, "env", "", "Path to ENV file (required)")
+	flag.StringVar(&task, "task", "", "Name of the task to run (required)")
 
 	flag.Usage = usage
 
 	flag.Parse()
 
-	if err := godotenv.Load(env); err != nil && env != "" {
+	if task == "" {
 		return errors.NewInternal(&errors.Bubble{
 			Where: "Up",
-			What:  "Failure to load ENV file",
-			Who:   err,
+			What:  "Cannot run an empty task",
 		})
 	}
 

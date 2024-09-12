@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bastean/codexgo/v4/pkg/context/shared/infrastructure/records/log"
+	"github.com/bastean/godo/pkg/context/shared/infrastructure/records/log"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/fatih/color"
 )
@@ -24,13 +24,13 @@ var (
 )
 
 func Logo() {
-	figureCodex := figure.NewFigure("codex", "speed", true).Slicify()
 	figureGo := figure.NewFigure("GO", "speed", true).Slicify()
+	figureDo := figure.NewFigure("DO", "speed", true).Slicify()
 
 	width := 0
 	fixedWidth := 0
 
-	for _, line := range figureCodex {
+	for _, line := range figureGo {
 		width = len(line)
 
 		if width > fixedWidth {
@@ -38,14 +38,14 @@ func Logo() {
 		}
 	}
 
-	for i, line := range figureCodex {
+	for i, line := range figureGo {
 		width = len(line)
 
 		if width < fixedWidth {
 			line += strings.Repeat(" ", (fixedWidth - width))
 		}
 
-		fmt.Println(White(line), Cyan(figureGo[i]))
+		fmt.Println(Cyan(line), White(figureDo[i]))
 	}
 
 	fmt.Println()
