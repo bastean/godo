@@ -25,13 +25,11 @@ func (suite *CmdTestSuite) SetupTest() {
 }
 
 func (suite *CmdTestSuite) TestExecute() {
-	task, err := exec.New(&exec.Primitive{
+	task := &exec.Exec{
 		Commands: []string{
 			fmt.Sprintf("touch %s", suite.file),
 		},
-	})
-
-	suite.NoError(err)
+	}
 
 	suite.NoError(suite.sut.Execute(task.Commands[0]))
 
@@ -41,15 +39,13 @@ func (suite *CmdTestSuite) TestExecute() {
 }
 
 func (suite *CmdTestSuite) TestExecuteErrFailure() {
-	task, err := exec.New(&exec.Primitive{
+	task := &exec.Exec{
 		Commands: []string{
 			fmt.Sprintf("touch -x %s", suite.file),
 		},
-	})
+	}
 
-	suite.NoError(err)
-
-	err = suite.sut.Execute(task.Commands[0])
+	err := suite.sut.Execute(task.Commands[0])
 
 	var actual *errors.ErrFailure
 

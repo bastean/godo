@@ -5,5 +5,5 @@ import (
 )
 
 type Executer interface {
-	Execute(*exec.Command) error
+	Execute(exec.Command) error
 }

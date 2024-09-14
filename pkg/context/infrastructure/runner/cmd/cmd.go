@@ -10,8 +10,8 @@ import (
 
 type Cmd struct{}
 
-func (*Cmd) Execute(command *exec.Command) error {
-	values := strings.Split(command.Value, " ")
+func (*Cmd) Execute(command exec.Command) error {
+	values := strings.Split(command, " ")
 
 	name := values[0]
 	args := values[1:]

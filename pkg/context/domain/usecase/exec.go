@@ -6,6 +6,6 @@ import (
 
 type (
 	ExecDo interface {
-		Run(*exec.Primitive) error
+		Run(exec.Command) error
 	}
 )
