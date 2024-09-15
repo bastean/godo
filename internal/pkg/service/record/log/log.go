@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bastean/godo/pkg/context/shared/infrastructure/records/log"
+	"github.com/bastean/godo/pkg/context/infrastructure/record/log"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/fatih/color"
 )

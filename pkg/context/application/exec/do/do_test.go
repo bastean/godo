@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/bastean/godo/pkg/context/application/exec/do"
-	"github.com/bastean/godo/pkg/context/domain/aggregate/exec"
+	"github.com/bastean/godo/pkg/context/domain/entity/exec"
 	"github.com/bastean/godo/pkg/context/domain/usecase"
 	"github.com/bastean/godo/pkg/context/infrastructure/runner"
 	"github.com/stretchr/testify/suite"
@@ -25,9 +25,11 @@ func (suite *DoTestSuite) SetupTest() {
 }
 
 func (suite *DoTestSuite) TestDo() {
-	task := &exec.Exec{
-		Commands: []string{
-			"godo",
+	task := &exec.Task{
+		Commands: []*exec.Command{
+			{
+				Name: "godo",
+			},
 		},
 	}
 

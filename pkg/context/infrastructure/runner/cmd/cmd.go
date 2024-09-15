@@ -2,36 +2,25 @@ package cmd
 
 import (
 	ex "os/exec"
-	"strings"
 
-	"github.com/bastean/godo/pkg/context/domain/aggregate/exec"
+	"github.com/bastean/godo/pkg/context/domain/entity/exec"
 	"github.com/bastean/godo/pkg/context/domain/errors"
 )
 
 type Cmd struct{}
 
-func (*Cmd) Execute(command exec.Command) error {
-	values := strings.Split(command, " ")
-
-	name := values[0]
-	args := values[1:]
-
-	if output, err := ex.Command(name, args...).CombinedOutput(); err != nil {
+func (*Cmd) Execute(command *exec.Command) error {
+	if output, err := ex.Command(command.Name, command.Args...).CombinedOutput(); err != nil {
 		return errors.NewFailure(&errors.Bubble{
 			Where: "Execute",
-			What:  "Cannot execute command",
+			What:  string(output),
 			Why: errors.Meta{
-				"Name":   name,
-				"Args":   args,
-				"Output": string(output),
+				"Name": command.Name,
+				"Args": command.Args,
 			},
 			Who: err,
 		})
 	}
 
 	return nil
-}
-
-func New() *Cmd {
-	return new(Cmd)
 }

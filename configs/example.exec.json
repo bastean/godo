@@ -1,0 +1,26 @@
+{
+  "Tasks": [
+    {
+      "Success": "Example tasks started!"
+    },
+    {
+      "Title": "Create a file",
+      "Description": "We will create a file and write something in it",
+      "Commands": [
+        {
+          "Name": "mkdir",
+          "Args": ["-p", "ignore"]
+        },
+        {
+          "Name": "bash",
+          "Args": ["-c", "echo \"Example\" > ignore/example.txt"]
+        }
+      ],
+      "Success": "File created!",
+      "Error": "File could not be created"
+    },
+    {
+      "Success": "Example tasks completed!"
+    }
+  ]
+}

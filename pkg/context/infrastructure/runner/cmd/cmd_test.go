@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/bastean/godo/pkg/context/domain/aggregate/exec"
+	"github.com/bastean/godo/pkg/context/domain/entity/exec"
 	"github.com/bastean/godo/pkg/context/domain/errors"
 	"github.com/bastean/godo/pkg/context/domain/role"
 	"github.com/bastean/godo/pkg/context/domain/service"
@@ -20,14 +20,17 @@ type CmdTestSuite struct {
 }
 
 func (suite *CmdTestSuite) SetupTest() {
-	suite.sut = cmd.New()
+	suite.sut = new(cmd.Cmd)
 	suite.file = fmt.Sprintf("temp-%s.tmp", service.Create.UUID())
 }
 
 func (suite *CmdTestSuite) TestExecute() {
-	task := &exec.Exec{
-		Commands: []string{
-			fmt.Sprintf("touch %s", suite.file),
+	task := &exec.Task{
+		Commands: []*exec.Command{
+			{
+				Name: "touch",
+				Args: []string{suite.file},
+			},
 		},
 	}
 
@@ -39,9 +42,15 @@ func (suite *CmdTestSuite) TestExecute() {
 }
 
 func (suite *CmdTestSuite) TestExecuteErrFailure() {
-	task := &exec.Exec{
-		Commands: []string{
-			fmt.Sprintf("touch -x %s", suite.file),
+	task := &exec.Task{
+		Commands: []*exec.Command{
+			{
+				Name: "touch",
+				Args: []string{
+					"-x",
+					suite.file,
+				},
+			},
 		},
 	}
 
@@ -54,11 +63,10 @@ func (suite *CmdTestSuite) TestExecuteErrFailure() {
 	expected := &errors.ErrFailure{Bubble: &errors.Bubble{
 		When:  actual.When,
 		Where: "Execute",
-		What:  "Cannot execute command",
+		What:  actual.What,
 		Why: errors.Meta{
-			"Name":   "touch",
-			"Args":   []string{"-x", suite.file},
-			"Output": actual.Why["Output"],
+			"Name": "touch",
+			"Args": []string{"-x", suite.file},
 		},
 		Who: actual.Who,
 	}}

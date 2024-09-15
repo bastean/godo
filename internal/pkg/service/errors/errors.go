@@ -11,8 +11,6 @@ type (
 
 type (
 	ErrInvalidValue = errors.ErrInvalidValue
-	ErrAlreadyExist = errors.ErrAlreadyExist
-	ErrNotExist     = errors.ErrNotExist
 	ErrFailure      = errors.ErrFailure
 	ErrInternal     = errors.ErrInternal
 )
