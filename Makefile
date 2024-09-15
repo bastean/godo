@@ -10,6 +10,9 @@ url-github = https://github.com/bastean/godo
 
 go-tidy = go mod tidy -e
 
+godo = go run ./cmd/godo
+godo-exec = ${godo} exec -c
+
 #*______Node______
 
 npx = npx --no --
@@ -49,7 +52,7 @@ upgrade-reset:
 	${npm-ci}
 
 upgrade:
-	go run ./scripts/upgrade
+	${godo-exec} configs/upgrade.json
 
 #*______Install______
 
