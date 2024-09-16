@@ -31,7 +31,7 @@ go install github.com/bastean/godo/cmd/godo@latest
 ### Usage
 
 ```bash
-godo -h
+godo
 ```
 
 ```text
@@ -43,53 +43,91 @@ _  / __  _  / / / __  / / /_  / / /
 
 Predefined task runner.
 
-Usage: godo [flags]
+Usage:
+  godo [flags]
+  godo [command]
 
-  -task string
-    	Name of the task to run (required)
-```
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  exec        Execute a list of tasks from a file
+  help        Help about any command
 
-## Package
+Flags:
+  -h, --help   help for godo
 
-### Download
-
-```bash
-go get github.com/bastean/godo
-```
-
-### Update
-
-```bash
-go get -u github.com/bastean/godo
-```
-
-### Usage
-
-```go
-package main
-
-import (
-	"github.com/bastean/godo"
-)
-
-func main() {
-	godo.TODO()
-}
+Use "godo [command] --help" for more information about a command.
 ```
 
 ## Tasks
 
-### Run
+### Exec
 
--
+Execute a list of tasks from a file, all tasks will be executed following the preset order in the configuration file, if any of the tasks fail, the following tasks will not be executed.
 
-### Sync
+```bash
+godo exec -c configs/example.exec.json
+```
 
--
+```text
+Example tasks started!
+Create a file
+We will create a file and write something in it
+(1/2) mkdir -p ignore
+(2/2) bash -c echo "Example" > ignore/example.txt
+File created!
+Example tasks completed!
+```
 
-### Copy
+[example.exec.json](configs/example.exec.json)
 
--
+```json
+{
+  "Tasks": [
+    {
+      "Success": "Example tasks started!"
+    },
+    {
+      "Title": "Create a file",
+      "Description": "We will create a file and write something in it",
+      "Commands": [
+        {
+          "Name": "mkdir",
+          "Args": ["-p", "ignore"]
+        },
+        {
+          "Name": "bash",
+          "Args": ["-c", "echo \"Example\" > ignore/example.txt"]
+        }
+      ],
+      "Success": "File created!",
+      "Error": "File could not be created"
+    },
+    {
+      "Success": "Example tasks completed!"
+    }
+  ]
+}
+```
+
+Basic structure
+
+```json
+{
+  "Tasks": [
+    {
+      "Title": "",
+      "Description": "",
+      "Commands": [{ "Name": "", "Args": [""] }],
+      "Success": "",
+      "Error": ""
+    }
+  ]
+}
+```
+
+- `Success` is only displayed if the task has been successfully completed.
+- `Error` is only displayed if an error occurred during the execution of the task.
+- All fields in a task are optional.
 
 ## First Steps
 
@@ -139,13 +177,7 @@ make test-unit
 make test-integration
 ```
 
-##### Acceptance
-
-```bash
-make test-acceptance
-```
-
-##### Unit / Integration / Acceptance
+##### Unit & Integration
 
 ```bash
 make tests
@@ -156,6 +188,7 @@ make tests
 #### Base
 
 - [Go](https://go.dev)
+- [Cobra](https://cobra.dev)
 
 #### Please see
 

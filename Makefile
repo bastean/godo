@@ -146,10 +146,10 @@ test-clean: generate-required
 	mkdir -p test/report
 
 test-unit: test-clean
-	${bash} 'go test -v -cover ./pkg/context/... -run TestUnit.* |& tee test/report/unit.report.log'
+	${bash} 'go test -v -cover ./pkg/... -run TestUnit.* |& tee test/report/unit.report.log'
 
 test-integration: test-clean
-	${bash} 'go test -v -cover ./pkg/context/... -run TestIntegration.* |& tee test/report/integration.report.log'
+	${bash} 'go test -v -cover ./pkg/... -run TestIntegration.* |& tee test/report/integration.report.log'
 
 test-acceptance: test-clean
 	${bash} 'go test -v -cover ./internal/app/... -run TestAcceptance.* |& tee test/report/acceptance.report.log'
