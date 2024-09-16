@@ -14,21 +14,21 @@ import (
 )
 
 var Flag = &struct {
-	Cmd, CmdShort string
+	Config, ConfigShort string
 }{
-	Cmd:      "cmd",
-	CmdShort: "c",
+	Config:      "config",
+	ConfigShort: "c",
 }
 
 var Command = &cobra.Command{
 	Use:   "exec",
-	Short: "Executes a list of commands from a file",
+	Short: "Execute a list of tasks from a file",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
 			help.Show(cmd)
 		}
 
-		filepath, err := cmd.Flags().GetString(Flag.Cmd)
+		filepath, err := cmd.Flags().GetString(Flag.Config)
 
 		if err != nil {
 			handler.ExitByError(err)
@@ -63,6 +63,6 @@ var Command = &cobra.Command{
 }
 
 func init() {
-	Command.Flags().StringP(Flag.Cmd, Flag.CmdShort, "", "Commands filepath (required)")
-	Command.MarkFlagRequired(Flag.Cmd)
+	Command.Flags().StringP(Flag.Config, Flag.ConfigShort, "", "Configuration filepath (required)")
+	Command.MarkFlagRequired(Flag.Config)
 }
