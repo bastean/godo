@@ -3,8 +3,8 @@ package cmd
 import (
 	ex "os/exec"
 
-	"github.com/bastean/godo/pkg/context/domain/entity/exec"
-	"github.com/bastean/godo/pkg/context/domain/errors"
+	"github.com/bastean/godo/pkg/domain/entity/exec"
+	"github.com/bastean/godo/pkg/domain/errors"
 )
 
 type Cmd struct{}

@@ -1,9 +1,9 @@
 package do
 
 import (
-	"github.com/bastean/godo/pkg/context/domain/entity/exec"
-	"github.com/bastean/godo/pkg/context/domain/errors"
-	"github.com/bastean/godo/pkg/context/domain/role"
+	"github.com/bastean/godo/pkg/domain/entity/exec"
+	"github.com/bastean/godo/pkg/domain/errors"
+	"github.com/bastean/godo/pkg/domain/role"
 )
 
 type Do struct {

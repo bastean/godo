@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/bastean/godo/pkg/context/infrastructure/runner/cmd"
+	"github.com/bastean/godo/pkg/infrastructure/runner/cmd"
 )
 
 var (

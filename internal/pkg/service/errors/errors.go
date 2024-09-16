@@ -1,7 +1,7 @@
 package errors
 
 import (
-	"github.com/bastean/godo/pkg/context/domain/errors"
+	"github.com/bastean/godo/pkg/domain/errors"
 )
 
 type (

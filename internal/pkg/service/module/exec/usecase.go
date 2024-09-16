@@ -1,7 +1,7 @@
 package exec
 
 import (
-	"github.com/bastean/godo/pkg/context/application/exec/do"
+	"github.com/bastean/godo/pkg/application/exec/do"
 )
 
 var (

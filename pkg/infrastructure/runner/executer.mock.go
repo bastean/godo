@@ -1,7 +1,7 @@
 package runner
 
 import (
-	"github.com/bastean/godo/pkg/context/domain/entity/exec"
+	"github.com/bastean/godo/pkg/domain/entity/exec"
 	"github.com/stretchr/testify/mock"
 )
 

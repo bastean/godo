@@ -3,10 +3,10 @@ package do_test
 import (
 	"testing"
 
-	"github.com/bastean/godo/pkg/context/application/exec/do"
-	"github.com/bastean/godo/pkg/context/domain/entity/exec"
-	"github.com/bastean/godo/pkg/context/domain/usecase"
-	"github.com/bastean/godo/pkg/context/infrastructure/runner"
+	"github.com/bastean/godo/pkg/application/exec/do"
+	"github.com/bastean/godo/pkg/domain/entity/exec"
+	"github.com/bastean/godo/pkg/domain/usecase"
+	"github.com/bastean/godo/pkg/infrastructure/runner"
 	"github.com/stretchr/testify/suite"
 )
 
