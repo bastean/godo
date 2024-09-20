@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bastean/godo/pkg/infrastructure/record/log"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/fatih/color"
+
+	"github.com/bastean/godo/pkg/infrastructure/record/log"
 )
 
 var (

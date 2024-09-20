@@ -5,12 +5,13 @@ import (
 	"os"
 	"testing"
 
+	"github.com/stretchr/testify/suite"
+
 	"github.com/bastean/godo/pkg/domain/entity/exec"
 	"github.com/bastean/godo/pkg/domain/errors"
 	"github.com/bastean/godo/pkg/domain/role"
 	"github.com/bastean/godo/pkg/domain/service"
 	"github.com/bastean/godo/pkg/infrastructure/runner/cmd"
-	"github.com/stretchr/testify/suite"
 )
 
 type CmdTestSuite struct {

@@ -1,8 +1,9 @@
 package runner
 
 import (
-	"github.com/bastean/godo/pkg/domain/entity/exec"
 	"github.com/stretchr/testify/mock"
+
+	"github.com/bastean/godo/pkg/domain/entity/exec"
 )
 
 type ExecuterMock struct {

@@ -3,11 +3,12 @@ package do_test
 import (
 	"testing"
 
+	"github.com/stretchr/testify/suite"
+
 	"github.com/bastean/godo/pkg/application/exec/do"
 	"github.com/bastean/godo/pkg/domain/entity/exec"
 	"github.com/bastean/godo/pkg/domain/usecase"
 	"github.com/bastean/godo/pkg/infrastructure/runner"
-	"github.com/stretchr/testify/suite"
 )
 
 type DoTestSuite struct {

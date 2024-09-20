@@ -8,6 +8,8 @@ url-github = https://github.com/bastean/godo
 
 #*______Go______
 
+module = github.com/bastean/godo
+
 go-tidy = go mod tidy -e
 
 godo = go run ./cmd/godo
@@ -62,6 +64,7 @@ install-scanners:
 	go install github.com/google/osv-scanner/cmd/osv-scanner@latest
 
 install-linters:
+	go install golang.org/x/tools/cmd/goimports@latest
 	go install honnef.co/go/tools/cmd/staticcheck@latest
 	npm i -g prettier
 
@@ -100,17 +103,6 @@ genesis:
 	git add .
 	$(MAKE) init
 
-#*______Lint/Format______
-
-lint: generate-required
-	go mod tidy
-	gofmt -l -s -w .
-	${npx} prettier --ignore-unknown --write .
-
-lint-check:
-	staticcheck ./...
-	${npx} prettier --check .
-
 #*______Scan______
 
 scan-leaks-local:
@@ -135,6 +127,19 @@ scan-vulns: scan-vulns-local
 scan-misconfigs: scan-misconfigs-local
 
 scans: scan-leaks scan-vulns scan-misconfigs
+
+#*______Lint/Format______
+
+lint:
+	go mod tidy
+	goimports -l -w -local ${module} .
+	gofmt -l -s -w .
+	${npx} prettier --ignore-unknown --write .
+	$(MAKE) generate-required
+
+lint-check:
+	staticcheck ./...
+	${npx} prettier --check .
 
 #*______Test______
 
