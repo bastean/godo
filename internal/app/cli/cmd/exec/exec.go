@@ -1,14 +1,12 @@
 package exec
 
 import (
-	"encoding/json"
-	"os"
-
 	"github.com/spf13/cobra"
 
 	"github.com/bastean/godo/internal/app/cli/handler"
 	"github.com/bastean/godo/internal/app/cli/util/help"
 	"github.com/bastean/godo/internal/app/cli/util/out"
+	"github.com/bastean/godo/internal/app/cli/util/read"
 	"github.com/bastean/godo/internal/pkg/service/module/exec"
 	"github.com/bastean/godo/internal/pkg/service/record/log"
 )
@@ -28,13 +26,13 @@ var Command = &cobra.Command{
 			help.Show(cmd)
 		}
 
-		filepath, err := cmd.Flags().GetString(Flag.Config)
+		route, err := cmd.Flags().GetString(Flag.Config)
 
 		if err != nil {
 			handler.ExitByError(err)
 		}
 
-		list, err := os.ReadFile(filepath)
+		list, err := read.File(route)
 
 		if err != nil {
 			handler.ExitByError(err)
@@ -44,7 +42,7 @@ var Command = &cobra.Command{
 			Tasks []*exec.Task
 		}{}
 
-		err = json.Unmarshal(list, &tasks)
+		err = read.JSON(list, &tasks)
 
 		if err != nil {
 			handler.ExitByError(err)

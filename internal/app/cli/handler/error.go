@@ -1,13 +1,19 @@
 package handler
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
 
 	"github.com/bastean/godo/internal/pkg/service/errors"
 	"github.com/bastean/godo/internal/pkg/service/record/log"
 )
+
+func FormatMessage(what string, who error) string {
+	if who != nil {
+		return fmt.Sprintf("%s: Error [%s]", what, who.Error())
+	}
+
+	return what
+}
 
 func ExitByError(err error) {
 	var (
@@ -16,23 +22,15 @@ func ExitByError(err error) {
 		errInternal     *errors.ErrInternal
 	)
 
-	var (
-		errJsonUnmarshalType *json.UnmarshalTypeError
-	)
-
 	var message string
 
 	switch {
 	case errors.As(err, &errInvalidValue):
-		message = errInvalidValue.What
+		message = FormatMessage(errInvalidValue.What, errInvalidValue.Who)
 	case errors.As(err, &errFailure):
-		message = errFailure.What
+		message = FormatMessage(errFailure.What, errFailure.Who)
 	case errors.As(err, &errInternal):
-		message = errInternal.What
-	case errors.As(err, &errJsonUnmarshalType):
-		message = fmt.Sprintf("Invalid type field [%s] required type is [%s] and [%s] was obtained", errJsonUnmarshalType.Field, errJsonUnmarshalType.Type, errJsonUnmarshalType.Value)
-	case errors.Is(err, os.ErrNotExist):
-		fallthrough
+		message = FormatMessage(errInternal.What, errInternal.Who)
 	case err != nil:
 		message = err.Error()
 	}
