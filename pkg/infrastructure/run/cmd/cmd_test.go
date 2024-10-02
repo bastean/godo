@@ -11,7 +11,7 @@ import (
 	"github.com/bastean/godo/pkg/domain/errors"
 	"github.com/bastean/godo/pkg/domain/role"
 	"github.com/bastean/godo/pkg/domain/service"
-	"github.com/bastean/godo/pkg/infrastructure/runner/cmd"
+	"github.com/bastean/godo/pkg/infrastructure/run/cmd"
 )
 
 type CmdTestSuite struct {
@@ -37,9 +37,7 @@ func (suite *CmdTestSuite) TestExecute() {
 
 	suite.NoError(suite.sut.Execute(task.Commands[0]))
 
-	result := suite.FileExists(suite.file)
-
-	suite.True(result)
+	suite.True(suite.FileExists(suite.file))
 }
 
 func (suite *CmdTestSuite) TestExecuteErrFailure() {

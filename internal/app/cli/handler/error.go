@@ -9,13 +9,13 @@ import (
 
 func FormatMessage(what string, who error) string {
 	if who != nil {
-		return fmt.Sprintf("%s: Error [%s]", what, who.Error())
+		return fmt.Sprintf("%s: Error [%s]", what, who)
 	}
 
 	return what
 }
 
-func ExitByError(err error) {
+func Error(err error, shouldExit bool) {
 	var (
 		errInvalidValue *errors.ErrInvalidValue
 		errFailure      *errors.ErrFailure
@@ -35,7 +35,16 @@ func ExitByError(err error) {
 		message = err.Error()
 	}
 
-	if message != "" {
+	switch {
+	case message != "" && shouldExit:
 		log.Fatal(message)
+	case message != "" && !shouldExit:
+		log.Error(message)
+	case shouldExit:
+		log.Fatal("Exited without error message defined")
 	}
+}
+
+func ExitByError(err error) {
+	Error(err, true)
 }

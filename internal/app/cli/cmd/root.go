@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/bastean/godo/internal/app/cli/cmd/exec"
-	"github.com/bastean/godo/internal/app/cli/util/help"
+	"github.com/bastean/godo/internal/app/cli/service/help"
 )
 
 const (

@@ -60,10 +60,6 @@ func Module(module string) string {
 	return fmt.Sprintf("Module:%s", module)
 }
 
-func Server(app string) string {
-	return fmt.Sprintf("Server:%s", app)
-}
-
 func Starting(service string) {
 	Info(fmt.Sprintf("Starting %s...", service))
 }
@@ -86,28 +82,4 @@ func Stopped(service string) {
 
 func CannotBeStopped(service string) {
 	Error(fmt.Sprintf("%s cannot be stopped", service))
-}
-
-func EstablishingConnectionWith(service string) {
-	Info(fmt.Sprintf("Establishing connection with %s...", service))
-}
-
-func ConnectionEstablishedWith(service string) {
-	Success(fmt.Sprintf("Connection established with %s", service))
-}
-
-func ConnectionFailedWith(service string) {
-	Error(fmt.Sprintf("Connection failed with %s", service))
-}
-
-func ClosingConnectionWith(service string) {
-	Info(fmt.Sprintf("Closing connection with %s...", service))
-}
-
-func ConnectionClosedWith(service string) {
-	Success(fmt.Sprintf("Connection closed with %s", service))
-}
-
-func DisconnectionFailedWith(service string) {
-	Error(fmt.Sprintf("Disconnection failed with %s", service))
 }

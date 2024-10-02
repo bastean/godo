@@ -4,9 +4,9 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/bastean/godo/internal/app/cli/handler"
-	"github.com/bastean/godo/internal/app/cli/util/help"
-	"github.com/bastean/godo/internal/app/cli/util/out"
-	"github.com/bastean/godo/internal/app/cli/util/read"
+	"github.com/bastean/godo/internal/app/cli/service/help"
+	"github.com/bastean/godo/internal/app/cli/service/out"
+	"github.com/bastean/godo/internal/app/cli/service/read"
 	"github.com/bastean/godo/internal/pkg/service/module/exec"
 	"github.com/bastean/godo/internal/pkg/service/record/log"
 )
@@ -32,17 +32,15 @@ var Command = &cobra.Command{
 			handler.ExitByError(err)
 		}
 
-		list, err := read.File(route)
+		data, err := read.File(route)
 
 		if err != nil {
 			handler.ExitByError(err)
 		}
 
-		tasks := &struct {
-			Tasks []*exec.Task
-		}{}
+		var tasks *exec.Exec
 
-		err = read.JSON(list, &tasks)
+		err = read.JSON(data, &tasks)
 
 		if err != nil {
 			handler.ExitByError(err)
@@ -52,6 +50,7 @@ var Command = &cobra.Command{
 			out.Print(log.Info, task.Title, task.Description)
 
 			if err = Do(task); err != nil {
+				out.Print(log.Error, task.Error)
 				handler.ExitByError(err)
 			}
 

@@ -6,19 +6,19 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	"github.com/bastean/godo/pkg/application/exec/do"
+	"github.com/bastean/godo/pkg/domain/cases"
 	"github.com/bastean/godo/pkg/domain/entity/exec"
-	"github.com/bastean/godo/pkg/domain/usecase"
-	"github.com/bastean/godo/pkg/infrastructure/runner"
+	"github.com/bastean/godo/pkg/infrastructure/run"
 )
 
 type DoTestSuite struct {
 	suite.Suite
-	sut      usecase.ExecDo
-	executer *runner.ExecuterMock
+	sut      cases.ExecDo
+	executer *run.ExecuterMock
 }
 
 func (suite *DoTestSuite) SetupTest() {
-	suite.executer = new(runner.ExecuterMock)
+	suite.executer = new(run.ExecuterMock)
 
 	suite.sut = &do.Do{
 		Executer: suite.executer,

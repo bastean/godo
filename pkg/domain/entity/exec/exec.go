@@ -11,8 +11,6 @@ type Task struct {
 	Commands           []*Command
 }
 
-func New() *Task {
-	return &Task{
-		Commands: []*Command{},
-	}
+type Exec struct {
+	Tasks []*Task
 }

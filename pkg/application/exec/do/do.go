@@ -10,8 +10,8 @@ type Do struct {
 	role.Executer
 }
 
-func (use *Do) Run(cmd *exec.Command) error {
-	if err := use.Executer.Execute(cmd); err != nil {
+func (use *Do) Run(command *exec.Command) error {
+	if err := use.Executer.Execute(command); err != nil {
 		return errors.BubbleUp(err, "Run")
 	}
 

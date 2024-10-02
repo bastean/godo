@@ -4,6 +4,7 @@
       "Success": "Starting upgrades..."
     },
     {
+      "Title": "Linting...",
       "Commands": [{ "Name": "make", "Args": ["lint"] }]
     },
     {
@@ -19,6 +20,7 @@
       "Commands": [{ "Name": "make", "Args": ["install-tooling"] }]
     },
     {
+      "Title": "Linting...",
       "Commands": [{ "Name": "make", "Args": ["lint"] }]
     },
     {

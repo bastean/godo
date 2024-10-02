@@ -103,6 +103,14 @@ genesis:
 	git add .
 	$(MAKE) init
 
+#*______ENV______
+
+syncenv-reset:
+	${git-reset-hard}
+
+syncenv:
+	cd deployments && go run ../scripts/syncenv
+
 #*______Scan______
 
 scan-leaks-local:
@@ -162,6 +170,12 @@ test-acceptance: test-clean
 tests: test-clean
 	${bash} 'go test -v -cover ./... |& tee test/report/report.log'
 
+#*______Build______
+
+build: lint
+	rm -rf build/
+	go build -ldflags="-s -w" -o build/godo ./cmd/godo
+
 #*______Release______
 
 release:
@@ -184,20 +198,6 @@ release-dry-version:
 
 release-dry-changelog:
 	${release-it-dry} --changelog
-
-#*______Build______
-
-build: lint
-	rm -rf build/
-	go build -ldflags="-s -w" -o build/godo ./cmd/godo
-
-#*______ENV______
-
-syncenv-reset:
-	${git-reset-hard}
-
-syncenv:
-	cd deployments && go run ../scripts/syncenv
 
 #*______Git______
 

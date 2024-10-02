@@ -11,8 +11,13 @@ type (
 )
 
 type (
-	Task    = exec.Task
 	Command = exec.Command
+	Task    = exec.Task
+	Exec    = exec.Exec
+)
+
+var (
+	Do *do.Do
 )
 
 func Start(executer Executer) {

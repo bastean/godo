@@ -1,4 +1,4 @@
-package usecase
+package cases
 
 import (
 	"github.com/bastean/godo/pkg/domain/entity/exec"
