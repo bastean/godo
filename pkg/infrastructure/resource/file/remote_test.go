@@ -21,10 +21,10 @@ func (suite *RemoteTestSuite) SetupTest() {
 	suite.sut = new(file.Remote)
 	suite.data = &Data{
 		Local: &Local{
-			Success: "testdata/example.exec.json",
+			Success: "testdata/success.json",
 		},
 		Remote: &Remote{
-			Success: "https://raw.githubusercontent.com/bastean/godo/e9068acd9f7cd0fa89310cadfce9e34c1300ead4/configs/example.exec.json",
+			Success: "https://raw.githubusercontent.com/bastean/godo/2e634dff1a43ea315235c6a2156a8627d491d9f8/pkg/infrastructure/resource/file/testdata/success.json",
 		},
 	}
 }
