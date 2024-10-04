@@ -42,9 +42,6 @@ upgrade-managers:
 upgrade-go:
 	go get -t -u ./cmd/... ./internal/... ./pkg/... ./scripts/...
 
-copydeps:
-	go run ./scripts/copydeps
-
 upgrade-node:
 	${npx} ncu -ws -u
 	npm i --legacy-peer-deps
@@ -102,14 +99,6 @@ genesis:
 	git init
 	git add .
 	$(MAKE) init
-
-#*______ENV______
-
-syncenv-reset:
-	${git-reset-hard}
-
-syncenv:
-	cd deployments && go run ../scripts/syncenv
 
 #*______Scan______
 
