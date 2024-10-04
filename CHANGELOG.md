@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.2.0](https://github.com/bastean/godo/compare/v0.1.0...v0.2.0) (2024-10-04)
+
+### Chores
+
+- add goimports ([28595fe](https://github.com/bastean/godo/commit/28595fe0c0563245746bde6ada0b9a4da5c90185))
+- **deps:** upgrade ([a511235](https://github.com/bastean/godo/commit/a5112358346b509f968038545445506f7d88a7d4))
+- remove unused scripts ([a42a9aa](https://github.com/bastean/godo/commit/a42a9aaf1be4c082b04e635d0890731a3f7cdecc))
+
+### New Features
+
+- **cli:** add execution of remote tasks to exec ([3f86ea6](https://github.com/bastean/godo/commit/3f86ea63848f9bc84ac9e3817b8500240ab7d0e2))
+
+### Refactors
+
+- move logic from presentation to context ([2e634df](https://github.com/bastean/godo/commit/2e634dff1a43ea315235c6a2156a8627d491d9f8))
+
+### Tests
+
+- **infrastructure:** update remote address in resource ([a1f192d](https://github.com/bastean/godo/commit/a1f192d44820a6b869128998805b19946803f3ae))
+
 ## [0.1.0](https://github.com/bastean/godo/compare/v0.0.1-alpha.0...v0.1.0) (2024-09-16)
 
 ### Chores
